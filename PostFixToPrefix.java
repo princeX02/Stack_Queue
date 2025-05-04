@@ -1,5 +1,5 @@
 import java.util.*;
-public class PostfixToInfix {
+public class PostFixToPrefix {
     public static String convert(String str){
         Stack<String> stack=new Stack<>();
 
@@ -9,17 +9,17 @@ public class PostfixToInfix {
             if(Character.isLetterOrDigit(ch)){
                 stack.push(ch+"");
             }else{
-                String a=stack.pop();
-                String b=stack.pop();
-                String expr="("+b+ch+a+")";
-                stack.push(expr);
+                String t1=stack.pop();
+                String t2=stack.pop();
+
+                String exp=ch+t2+t1;
+                stack.push(exp);
             }
         }
         return stack.pop();
     }
     public static void main(String[] args) {
-        String postfix = "ab+c*";
-        String infix = convert(postfix);
-        System.out.println("Infix: " + infix); 
+        String postfix="ab-de+f*/";
+        System.out.println("Prefix : "+convert(postfix));
     }
 }
